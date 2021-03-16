@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.GoodsMapper">
+
+	<!-- 전체 상품 불러오기 -->
+	<select id="getBestGoods" resultType="attachVo">
+		SELECT n.goods_name, n.sub_goods, n.sale_price, n.origin_price, n.discount_rate,
+		a.uuid, a.filename1, a.uploadpath, a.image, a.attach_name, a.main
+		FROM jollygoods n JOIN attach a
+		ON n.goods_name = a.attach_name
+		order by sale_q desc
+	</select>
+
+	<select id="getNewGoods" resultType="attachVo">
+		SELECT n.goods_name, n.sub_goods, n.sale_price, n.origin_price, n.discount_rate,
+		a.uuid, a.filename1, a.uploadpath, a.image, a.attach_name, a.main
+		FROM jollygoods n JOIN attach a
+		ON n.goods_name = a.attach_name 
+		order by time desc
+	</select>
+	
+	<select id="getRowPriceGoods" resultType="attachVo">
+		SELECT n.goods_name, n.sub_goods, n.sale_price, n.origin_price, n.discount_rate,
+		a.uuid, a.filename1, a.uploadpath, a.image, a.attach_name, a.main
+		FROM jollygoods n JOIN attach a
+		ON n.goods_name = a.attach_name 
+		order by n.sale_price asc
+	</select>
+	
+	
+	<select id="getDiscountPriceGoods" resultType="attachVo">
+		SELECT n.goods_name, n.sub_goods, n.sale_price, n.origin_price, n.discount_rate,
+		a.uuid, a.filename1, a.uploadpath, a.image, a.attach_name, a.main
+		FROM jollygoods n JOIN attach a
+		ON n.goods_name = a.attach_name 
+        where origin_price != 0
+	</select>
+
+	<select id="getMainCategory" resultType="attachVo">
+		SELECT n.goods_name, n.sub_goods, n.sale_price,n.origin_price, n.discount_rate,
+		a.uuid, a.filename1, a.uploadpath, a.image, a.attach_name, a.time, a.main
+		FROM jollygoods n JOIN attach a
+		ON n.goods_name = a.attach_name 
+        where main_category = #{mainCategory}
+        order by time desc
+	</select>
+	
+	<select id="getSubCategory" resultType="attachVo">
+		SELECT n.goods_name, n.sub_goods, n.sale_price, n.origin_price, n.discount_rate,
+		a.uuid, a.filename1, a.uploadpath, a.image, a.attach_name, a.time, a.main
+		FROM jollygoods n JOIN attach a
+		ON n.goods_name = a.attach_name 
+        where main_category = #{mainCategory} and sub_category = #{subCategory}
+        order by time desc
+	</select>
+
+
+	<select id="getJollygoodsAndAttaches" resultMap="jollygoodsAndAttaches">
+	SELECT n.goods_name, n.sub_goods, n.main_category, n.sub_category, n.sale_price, n.origin_price, n.sales_unit,
+		       n.volume, n.del_classification, n.packing_type, n.allergy, n.shelf_life, n.fileuploadpath, n.contents1, n.contents2, n.upload, 
+		       a.num, a.uuid, a.filename1, a.uploadpath, a.image, a.main, a.attach_name
+		FROM jollygoods n LEFT OUTER JOIN attach a
+		ON n.goods_name = a.attach_name
+		where n.goods_name = #{attachName} 
+	</select>
+	<resultMap id="jollygoodsAndAttaches" type="goodsVo">
+		<!-- property 속성은 setter 메소드 이름을 의미함! -->
+		<id column="goods_name" property="goodsName"/>
+		<result column="sub_goods" property="subGoods"/>
+		<result column="main_category" property="mainCategory"/>
+		<result column="sub_category" property="subCategory"/>
+		<result column="sale_price" property="salePrice"/>
+		<result column="origin_price" property="originPrice"/>
+		<result column="sales_unit" property="salesUnit"/>
+		<result column="volume" property="volume"/>
+		<result column="del_classification" property="delClassification"/>
+		<result column="packing_type" property="packingType"/>
+		<result column="allergy" property="allergy"/>
+		<result column="shelf_life" property="shelfLife"/>
+		<result column="fileuploadpath" property="fileuploadpath"/>
+		<result column="contents1" property="contents1"/>
+		<result column="contents2" property="contents2"/>
+		<result column="upload" property="upload"/>
+		<collection property="attachList" ofType="attachVo" javaType="arraylist">
+			<id column="num" property="num"/>
+			<result column="uuid" property="uuid"/>
+			<result column="filename1" property="filename1"/>
+			<result column="uploadpath" property="uploadpath"/>
+			<result column="image" property="image"/>
+			<result column="main" property="main"/>
+			<result column="attach_name" property="attachName"/>
+		</collection>
+	</resultMap>
+
+	<insert id="goodsWrite">
+      INSERT INTO jolly.jollygoods (goods_name, sub_goods, main_category, sub_category, sale_price, origin_price, discount_rate, sales_unit, volume, del_classification, packing_type, allergy, shelf_life, contents1, contents2, file_url, upload) 
+      VALUES (#{goodsName}, #{subGoods}, #{mainCategory}, #{subCategory}, #{salePrice}, #{originPrice}, #{discountRate}, #{salesUnit}, #{volume}, #{delClassification}, #{packingType}, #{allergy}, #{shelfLife}, #{contents1}, #{contents2}, #{fileUrl}, #{upload})
+   </insert>
+   
+   <delete id="deleteGoodsByName">
+   		DELETE FROM jolly.jollygoods WHERE goods_name = #{goodsName}
+   </delete>
+   
+   <update id="updateGoods">
+	  	UPDATE jolly.jollygoods 
+		SET sub_goods = #{subGoods}, main_category = #{mainCategory}, sub_category = #{subCategory}, sale_price = #{salePrice}, origin_price = #{originPrice}, discount_rate = ${discountRate},
+		sales_unit = #{salesUnit}, volume = #{volume}, del_classification = #{delClassification}, packing_type = #{packingType}, allergy = #{allergy}, 
+		shelf_life = #{shelfLife}, contents1 = #{contents1}, contents2 = #{contents2}, upload = #{upload}
+		WHERE  goods_name = #{goodsName}
+   </update>
+   
+   <update id="updateSaleQ" parameterType="java.util.List">
+		<foreach collection="list" item="basketVo" index="index"
+			open="" close="" separator=";">
+			update jollygoods set sale_q = sale_q + #{basketVo.amount} where goods_name = #{basketVo.goodsName}
+		</foreach>
+	</update>
+	
+	<select id="getGoodsSerch" resultType="attachVo">
+      SELECT n.goods_name, n.sub_goods, n.sale_price,n.origin_price, n.discount_rate,
+      a.uuid, a.filename1, a.uploadpath, a.image, a.attach_name, a.time, a.main
+      FROM jollygoods n JOIN attach a
+      ON n.goods_name = a.attach_name 
+        where goods_name like concat('%', #{goodsSearch}, '%')
+        order by time desc
+   </select>
+
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ProductReviewMapper">
+
+	<select id="getProductReviewByname" resultType="productReviewVo">
+		SELECT * FROM
+		product_review WHERE goods_pk = #{goodsPk} OR goods_pk = 'Jolly'
+		ORDER
+		BY goods_pk = 'Jolly' DESC
+	</select>
+
+	<select id="getProductReviewAll" resultType="productReviewVo">
+		SELECT * FROM
+		product_review
+	</select>
+
+	<select id="getCountAll" resultType="int">
+		SELECT COUNT(*) FROM
+		product_review
+	</select>
+
+
+
+
+
+
+	<delete id="deleteProductReviewByNum">
+		DELETE FROM product_review WHERE num = #{num}
+	</delete>
+
+	<delete id="deleteCategoryProductReview">
+		DELETE FROM product_review WHERE goods_pk =
+		#{goods_pk}
+	</delete>
+
+	<delete id="deleteAllProductReview">
+		DELETE FROM product_review
+	</delete>
+
+
+
+
+
+
+	<insert id="addProductReview">
+		INSERT INTO product_review (title, content, writer,
+		goods_pk, filename, fileuploadpath)
+		VALUES (#{title}, #{content},
+		#{writer}, #{goodsPk}, #{filename}, #{fileuploadpath})
+	</insert>
+
+
+
+
+
+
+	<update id="updatelookupcount">
+		UPDATE product_review
+		SET lookup = lookup+ 1
+		WHERE num = #{num}
+	</update>
+
+	<update id="updateProductReview">
+		UPDATE product_review
+		SET title = #{title}, content = #{content}, filename = #{filename},
+		#{fileuploadpath}
+		WHERE num = #{num}
+	</update>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,33 @@
+.btn {
+    width: 100px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    background-color: #ea97ad;
+    border: 1px solid #ea97ad;
+    color: #fff;
+    font-size: 15px;
+    float: right;
+    margin-left: 2px;
+    font-size: 13px;
+}
+.btn:hover {
+    width: 100px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #5f0080;
+    color: #ea97ad;
+    font-size: 15px;
+    float: right;
+    margin-left: 2px;
+    font-size: 13px;
+}
+#content {
+    min-width: 1050px;
+    padding-bottom: 120px;
+}
+.table_faq tr td {
+    padding: 20px 0;
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.JQuestionMapper">
+   <select id="getJQuestionByNum" resultType="jquestionVo">
+       SELECT *
+       FROM jquestion
+       WHERE num = #{num}
+    </select>
+   
+   
+   <insert id="addJQuestion">
+      INSERT INTO jquestion (num, id, category, title, content)
+      VALUES (#{ num }, #{ id }, #{ category }, #{ title }, #{ content })
+   </insert>
+   
+   <select id="getCountByCategory" resultType="int">
+      SELECT COUNT(*)
+      FROM jquestion
+   </select>
+   
+   <select id="getCountBySearch" resultType="int">
+      SELECT COUNT(*) 
+      FROM jquestion 
+      <if test="category == 'category'">
+         WHERE category LIKE CONCAT('%', #{search}, '%') 
+      </if>
+      <if test="category == 'title'">
+         WHERE title LIKE CONCAT('%', #{search}, '%') 
+      </if>
+   </select>
+   
+   <select id="getJQuestionBySearch" resultType="jquestionVo">
+      SELECT * 
+      FROM jquestion 
+      <if test="category == 'category'">
+         WHERE category LIKE CONCAT('%', #{search}, '%') 
+      </if>
+      <if test="category == 'title'">
+         WHERE title LIKE CONCAT('%', #{search}, '%') 
+      </if>
+      ORDER BY num DESC 
+      LIMIT #{startRow}, #{pageSize} 
+   </select>
+   
+</mapper>

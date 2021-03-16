@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BasketMapper">
+
+	<!-- 장바구니 단일 상품 제거 -->
+	<delete id="deleteOne">
+		DELETE FROM jolly_cart WHERE (consumer_id =
+		#{consumerId}) AND (goods_name = #{goodsName});
+	</delete>
+
+	<!-- 장바구니 추가하기 -->
+	<insert id="addBasket">
+		INSERT INTO jolly_cart (`consumer_id`, `goods_name`,
+		`amount`) VALUES (#{consumerId}, #{goodsName}, #{amount});
+	</insert>
+
+	<!-- 회원 장바구니 정보 불러오기 -->
+	<select id="getMemberBasket" resultType="basketVo">
+		SELECT
+		jc.cart_id
+		, jc.consumer_id
+		, jg.goods_name
+		, jc.amount
+		, jg.sale_price
+		, jg.origin_price
+		, atc.uuid
+		, atc.filename1
+		, atc.uploadpath
+		FROM
+		jollygoods AS jg
+		LEFT OUTER JOIN
+		jolly_cart AS jc
+		ON
+		jg.goods_name = jc.goods_name
+		LEFT OUTER JOIN
+		attach AS atc
+		ON
+		atc.attach_name = jc.goods_name
+		WHERE
+		jc.consumer_id = #{consumerId} AND atc.main = 'O';
+	</select>
+
+	<!-- 장바구니 선택 상품 제거 -->
+	<delete id="deleteSelection">
+		DELETE FROM jolly_cart WHERE (consumer_id =
+		#{consumerId}) AND goods_name IN
+		<foreach collection="delGoodsNames" item="delGoodsName"
+			open="(" separator="," close=")">
+			#{delGoodsName}
+		</foreach>
+	</delete>
+
+	<update id="updateCart" parameterType="java.util.List">
+		<foreach collection="list" item="basketVo" index="index"
+			open="" close="" separator=";">
+			UPDATE jolly_cart
+			SET amount = #{basketVo.amount}
+			WHERE goods_name = #{basketVo.goodsName}
+		</foreach>
+	</update>
+	
+	<delete id="deleteCartById">
+		DELETE FROM jolly_cart WHERE consumer_id = #{id}
+	</delete>
+
+</mapper>

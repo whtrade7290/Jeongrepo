@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.MemberMapper">
+
+	<!-- 회원가입 -->
+	<insert id="addMember">
+		INSERT INTO jollymember (id, pw, name, email, tel,
+		address, gender, birthday, push, regDate)
+		VALUES (#{id}, #{pw},
+		#{name}, #{email}, #{tel}, #{address}, #{gender},
+		#{birthday}, #{push},
+		#{regDate})
+	</insert>
+
+	<!-- 아이디 중복확인 > 아이디가 있으면 1 없으면 0 -->
+	<select id="getCountById" resultType="int">
+		SELECT COUNT(*) FROM jollymember
+		WHERE id = #{id}
+	</select>
+
+	<!-- 아이디 찾기 -->
+	<select id="getFindId" resultType="String">
+		SELECT id FROM jollymember
+		WHERE name = #{name} AND email = #{email}
+	</select>
+	
+	<!-- 비번 찾기 -->
+	<select id="getCountFindPw" resultType="String">
+		SELECT pw FROM jollymember
+		WHERE name = #{name} and id = #{id} and email = #{email}
+	</select>
+	
+	<!--로그인 -->
+	<select id="userCheck" resultType="String">
+		SELECT pw FROM jollymember
+		WHERE id = #{id}
+	</select>
+
+	<select id="userCheck1" resultType="String">
+		SELECT name from jollymember
+		where id= #{id}
+	</select>
+	
+	<insert id="addRandom">
+      INSERT INTO jolly.random (random) VALUES (#{randomNum})
+   </insert>
+   
+   <select id="getCountRandomNum" resultType="int">
+      SELECT COUNT(*) FROM jolly.random WHERE random = #{randomNum}
+   </select>
+   
+   <delete id="randomTruncate">
+      TRUNCATE jolly.random;
+   </delete>
+   
+   <select id="getCountByPushId" resultType="int">
+      SELECT COUNT(*) FROM jollymember WHERE id = #{id}
+   </select>
+   
+   <select id="getMemberByID" resultType="memberVo">
+      SELECT * FROM jollymember WHERE id = #{id}
+   </select>
+   
+   <insert id="addOrderDetails" parameterType="java.util.List">
+	    INSERT INTO order_history (buyer, product, quantity, sale_price, order_id)
+		VALUES
+	    <foreach collection="list" item="item" separator=",">
+	        (#{item.buyer}, #{item.product}, #{item.quantity}, #{item.salePrice}, #{item.orderId})
+	    </foreach>
+	</insert>
+	
+	<insert id="addOrderDetailsPerPayment">
+		INSERT INTO order_details_per_payment (order_id, order_detail_title, total_price, buyer, reg_date) 
+		VALUES (#{orderId}, #{orderDetailTitle}, #{totalSalePrice}, #{id}, now())
+	</insert>
+	
+	<select id="getOrderDetails" resultType="orderDetailsVo">
+      SELECT * FROM order_details_per_payment WHERE buyer = #{id} ORDER BY reg_date DESC
+   </select>
+   
+   <select id="getOrderHistory" resultType="orderHistoryVo">
+   		SELECT * FROM order_history
+		WHERE buyer = #{id} AND order_id = #{orderId}
+   </select>
+   
+   <select id="getJQuestionById" resultType="memberVo">
+       SELECT email,tel from jolly.jollymember
+       WHERE id = #{id}
+    </select>
+    
+    <select id="getMemberInfo" resultType="memberVo">
+       SELECT * FROM jolly.jollymember where id = #{id}
+    </select>
+   
+</mapper>

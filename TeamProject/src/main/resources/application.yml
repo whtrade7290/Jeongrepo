@@ -1,0 +1,47 @@
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mappers/**/*.xml
+  type-aliases-package: com.example.domain
+server:
+  port: 8083
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: mypwd
+    url: jdbc:mysql://localhost:3306/jolly?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&allowMultiQueries=true
+    username: myid
+  mvc:
+    servlet:
+      load-on-startup: 1
+    static-path-pattern: /**
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dogeaza@gmail.com
+    password: "busanit403@"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  web:
+    resources:
+      add-mappings: true
+      static-locations: classpath:/static/
+      
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 1MB
+      location: C:/Temp/upload
+      max-file-size: 100MB
+      max-request-size: 500MB
+
+

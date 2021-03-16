@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AttachMapper">
+
+	<insert id="insertAttach">
+		INSERT INTO jolly.attach (uuid, filename1, uploadpath, image, attach_name, main)
+		VALUES (#{uuid}, #{filename1}, #{uploadpath}, #{image}, #{attachName}, #{main})
+	</insert>
+	
+	<select id="getFileNum" resultType="int">
+		SELECT num FROM jolly.attach where attach_name = #{attachName} and main = #{main} and time <![CDATA[ < ]]> now();
+	</select>
+	
+	<select id="getAttachesByName" resultType="attachVo">
+		SELECT * FROM attach WHERE attach_name = #{attachName}
+	</select>
+
+	<delete id="deleteAttachesByName">
+		DELETE FROM attach where attach_name = #{goodsName}
+	</delete>
+	
+	<delete id="deleteAttachbyNum">
+		DELETE FROM attach WHERE num = #{num}
+	</delete>
+
+</mapper>

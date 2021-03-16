@@ -1,0 +1,149 @@
+.tit_page {
+    overflow: hidden;
+    width: 1050px;
+    margin: 0 auto;
+    padding: 55px 0 46px;
+}
+.tit_page h2.tit {
+    font-weight: 800;
+    font-family: noto sans;
+    font-size: 30px;
+    color: #333;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: -.5px;
+}
+.tit_page .sub {
+    font-family: noto sans;
+    font-size: 14px;
+    color: #999;
+    line-height: 20px;
+    letter-spacing: -.3px;
+    text-align: center;
+}
+#main {
+    border-bottom: 1px solid #f7f7f7;
+}
+#content {
+    min-width: 1050px;
+    padding-bottom: 120px;
+}
+.layout-wrapper {
+    position: relative;
+    width: 1050px;
+    height: 100%;
+    margin: 0 auto;
+}
+.xans-myshop-couponserial {
+    padding-bottom: 20px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+.bhs_button.yb {
+    background-color: #795b8f;
+    color: #fff;
+}
+.bhs_button {
+    width: 150px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    background-color: #795b8f;
+    border: 1px solid #5f0080;
+    color: #fff;
+    font-size: 15px;
+    float: right;
+    margin-left: 2px;
+    font-size: 13px;
+}
+.xans-board-movement {
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    margin: 20px 0;
+}
+ol, ul {
+    list-style-type: none;
+}
+.xans-board-movement li {
+    overflow: hidden;
+    padding: 0 20px;
+    border-bottom: 1px solid #f4f4f4;
+    line-height: 140%;
+    color: #333;
+}
+.xans-board-movement li a, .xans-board-movement li strong {
+    float: left;
+    padding: 10px;
+}
+
+.xans-board-movement li.next {
+    border: 0;
+}
+.xans-board-movement li strong {
+    width: 6%;
+    padding-left: 15px;
+    border-right: 1px solid #f4f4f4;
+    font-weight: 400;
+
+}
+*, *:after, *:before {
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.boardView {
+    table-layout: fixed;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #f4f4f4;
+    color: #333;
+    line-height: 180%;
+    margin-top: 20px;
+}
+.boardView th {
+    width: 130px;
+    padding: 13px 0 13px 20px;
+    background-color: #f7f5f8;
+    border-top: 1px solid #f4f4f4;
+    text-align: left;
+}
+.boardView td {
+    width: auto;
+    padding: 13px 0 13px 23px;
+    border-top: 1px solid #f4f4f4;
+}
+.boardView tr.etcArea td {
+    padding: 0;
+    border: 0;
+}
+.boardView tr.etcArea ul {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    width: 100%;
+    border-top: 1px solid #f4f4f4;
+}
+.boardView tr.etcArea ul li {
+    float: left;
+}
+.boardView tr.etcArea ul .th {
+    float: left;
+    padding: 13px 0 13px 20px;
+    width: 130px;
+    background-color: #f7f5f8;
+}
+.boardView tr.etcArea ul .td {
+    float: left;
+    padding: 13px 0 13px 20px;
+    width: 180px;
+}
+.xans-element-.xans-myshop.xans-myshop-couponserial td#contents .board_view_content {
+    line-height: 25px;
+}

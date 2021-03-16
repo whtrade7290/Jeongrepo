@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OneNoticeMapper">
+
+   <insert id="addOneNotice">
+       INSERT INTO onenotice (id, category, title, email, tel, content, emailchk, telchk, reg_date) 
+       VALUES (#{id}, #{category}, #{title}, #{email}, #{tel}, #{content}, #{emailchk}, #{telchk}, #{regDate})
+    </insert>
+
+    <select id="getCountBySearch" resultType="int">
+       SELECT COUNT(*) 
+       FROM onenotice 
+       <if test="category == 'title'">
+          WHERE title LIKE CONCAT('%', #{search}, '%') 
+       </if>
+       <if test="category == 'content'">
+          WHERE content LIKE CONCAT('%', #{search}, '%') 
+       </if>
+       <if test="category == 'id'">
+          WHERE id LIKE CONCAT('%', #{search}, '%') 
+       </if>
+    </select>
+   
+    <select id="getOneNoticesBySearch" resultType="oneNoticeVo">
+       SELECT * 
+       FROM onenotice 
+       <if test="category == 'title'">
+          WHERE title LIKE CONCAT('%', #{search}, '%') 
+       </if>
+       <if test="category == 'content'">
+          WHERE content LIKE CONCAT('%', #{search}, '%') 
+       </if>
+       <if test="category == 'id'">
+          WHERE id LIKE CONCAT('%', #{search}, '%') 
+       </if>
+       ORDER BY num DESC 
+       LIMIT #{startRow}, #{pageSize} 
+    </select>
+    
+    <select id="getOneNoticeAndJAttaches" resultMap="OneNoticeAndJAttaches">
+      SELECT o.num, o.id, o.category, o.title, o.email, o.tel, o.content,
+            o.emailchk, o.telchk, o.reg_date,
+             j.num as jnum, j.uuid, j.filename, j.uploadpath, j.image, j.no_num
+      FROM oneNotice o LEFT OUTER JOIN jattach j
+      ON o.num = j.no_num
+      where o.num = #{num}
+   </select>
+   <resultMap id="OneNoticeAndJAttaches" type="oneNoticeVo">
+      <!-- property 속성은 setter 메소드 이름을 의미함! -->
+      <id column="num" property="num"/>
+      <result column="id" property="id"/>
+      <result column="category" property="category"/>
+      <result column="title" property="title"/>
+      <result column="email" property="email"/>
+      <result column="tel" property="tel"/>
+      <result column="content" property="content"/>
+      <result column="emailchk" property="emailchk"/>
+      <result column="telchk" property="telchk"/>
+      <result column="reg_date" property="regDate"/>
+      <collection property="jattachList" ofType="jattachVo" javaType="arraylist">
+         <id column="jnum" property="num"/>
+         <result column="uuid" property="uuid"/>
+         <result column="filename" property="filename"/>
+         <result column="uploadpath" property="uploadpath"/>
+         <result column="image" property="image"/>
+         <result column="no_num" property="noNum"/>
+      </collection>
+   </resultMap>
+
+</mapper>

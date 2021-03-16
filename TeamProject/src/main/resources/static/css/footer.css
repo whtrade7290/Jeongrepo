@@ -1,0 +1,242 @@
+@charset "EUC-KR";
+
+div {
+	display: block;
+}
+
+body {
+	line-height: 1;
+	color: #4c4c4c;
+	font-size: 12px;
+	max-width: 100%;
+}
+
+*, *:after, *:before {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+div, th, td, li, dt, dd, p {
+	word-break: break-all;
+	/* 	display: block; */
+}
+
+a {
+	background-color: transparent;
+	text-decoration: none;
+}
+
+ol, ul {
+	list-style-type: none;
+}
+
+img {
+	border: 0;
+}
+
+img, video, canvas {
+	max-width: 100%;
+}
+
+#footer {
+	width: 1050px;
+	margin: 0 auto;
+	padding-bottom: 60px;
+	font-weight: 400;
+	letter-spacing: -.2px;
+}
+
+#footer {
+	font-family: noto sans;
+}
+
+#footer .inner_footer {
+	overflow: hidden;
+	padding-bottom: 20px;
+}
+
+#footer .footer_cc {
+	float: left;
+	width: 534px;
+}
+
+#footer .tit_cc {
+	padding: 29px 0 2px;
+	font-weight: 700;
+	font-size: 20px;
+	color: #333;
+	line-height: 24px;
+}
+
+#footer .cc_call {
+	padding-top: 20px;
+}
+
+#footer .cc_view {
+	overflow: hidden;
+	padding-top: 16px;
+}
+
+#footer .cc_kakao .tit, #footer .cc_qna .tit {
+	height: 40px;
+	padding-top: 7px;
+	margin-top: 3px;
+	border: 1px solid #e3e3e3;
+	border-radius: 3px;
+	font-weight: 700;
+	font-size: 14px;
+	color: #333;
+	line-height: 22px;
+	text-align: center;
+}
+
+#footer .cc_call .tit {
+	padding-top: 4px;
+	font-weight: 800;
+	font-size: 28px;
+	color: #333;
+	line-height: 36px;
+	letter-spacing: -.5px;
+	white-space: nowrap;
+}
+
+#footer .cc_view .tit {
+	float: left;
+	width: 140px;
+	margin-right: 16px;
+}
+
+#footer .footer_cc .list {
+	font-size: 14px;
+	color: #333;
+	line-height: 22px;
+	letter-spacing: -.2px;
+}
+
+#footer .footer_cc .list dt {
+	display: block;
+}
+
+#footer .footer_cc .list dd {
+	color: #999;
+}
+
+#footer .company {
+	float: left;
+	padding-top: 29px;
+	font-size: 12px;
+	color: #999;
+	line-height: 20px;
+}
+
+#footer .company .list {
+	overflow: hidden;
+	width: 100%;
+	padding-bottom: 29px;
+}
+
+#footer .company .list li {
+	float: left;
+	padding-right: 16px;
+}
+
+#footer .company .list .link {
+	font-size: 14px;
+	color: #333;
+	line-height: 18px;
+}
+
+#footer .company .list .emph {
+	font-weight: 700;
+}
+
+#footer .company .bar {
+	padding: 0 4px 0 3px;
+}
+
+#footer .company .copy {
+	display: block;
+	padding-top: 16px;
+	font-style: normal;
+	font-size: 10px;
+	color: #949296;
+	line-height: 22px;
+	letter-spacing: 0;
+}
+
+#footer .list_sns {
+	float: left;
+	padding-top: 16px;
+}
+
+#footer .list_sns li {
+	float: left;
+}
+
+#footer .list_sns .link_sns {
+	display: block;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+	vertical-align: top;
+}
+
+#footer .list_sns .lst {
+	margin-right: 0;
+}
+
+#footer .footer_link {
+	overflow: hidden;
+	padding-top: 19px;
+	border-top: 1px solid #eee;
+	letter-spacing: 0;
+}
+
+#footer .authentication {
+	float: left;
+	padding-top: 3px;
+}
+
+#footer .mark {
+	float: left;
+	width: 267px;
+}
+
+#footer .mark .logo {
+	float: left;
+	width: 34px;
+	height: 34px;
+	margin-right: 10px;
+}
+
+#footer .mark .txt {
+	float: left;
+	padding-top: 1px;
+	font-size: 10px;
+	color: #999;
+	line-height: 16px;
+	letter-spacing: -.5px;
+	white-space: nowrap;
+}
+
+#footer .lguplus {
+	width: 428px;
+}
+
+#pageTop {
+	overflow: hidden;
+	position: fixed;
+	z-index: 300;
+	right: 31px;
+	width: 58px;
+	height: 58px;
+	border: 0;
+	background:
+		url(https://res.kurly.com/pc/service/common/1903/btn_pagetop_v2.png)
+		no-repeat 50% 50%;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -9999px;
+	transition: background .5s;
+}

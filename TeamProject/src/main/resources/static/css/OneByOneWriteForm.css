@@ -1,0 +1,115 @@
+.page_aticle.aticle_type2 {
+    padding-top: 65px;
+}
+
+.page_aticle .head_aticle .tit {
+    height: 36px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #333;
+    letter-spacing: -.5px;
+}
+.xans-board-write .boardWrite2 {
+    table-layout: fixed;
+    border-top: 2px solid #333;
+    line-height: 180%;
+}
+.xans-board-write table th {
+    width: 110px;
+    padding: 15px 0 15px 20px;
+    background-color: #f7f5f8;
+    border-bottom: 1px solid #f4f4f4;
+    text-align: left;
+    font-weight: 400;
+    vertical-align: middle;
+}
+.xans-board-write table td {
+    width: auto;
+    padding: 15px 0 15px 10px;
+    height: 23px;
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
+    vertical-align: middle;
+    line-height: 20px;
+}
+.xans-board-write table select {
+    padding: 6px 5px;
+    border: 1px solid #d9d9d9;
+    margin-bottom: 5px;
+    color: #202020;
+}
+.xans-board-write table input[type=text], .xans-board-write table input[type=password], .xans-board-write table textarea {
+    height: 30px;
+    line-height: 25px;
+    border: 1px solid #d9d9d9;
+    color: #202020;
+}
+.bhs_button.yb {
+    background-color: #ea97ad;
+    color: #fff;
+}
+.xans-board-write .boardWrite2 input[type=text].read_only {
+    color: #949296;
+}
+.boardWrite2 .smalle {
+    position: relative;
+}
+.boardWrite2 .smalle input[type=checkbox] {
+    position: relative;
+    right: 2px;
+    vertical-align: middle;
+}
+.boardWrite2 .smalle {
+    position: relative;
+}
+.bhs_button {
+    width: 150px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    background-color: #795b8f;
+    border: 1px solid #ea97ad;
+    color: #fff;
+    font-size: 15px;
+    float: right;
+    margin-left: 2px;
+    font-size: 13px;
+}
+#qnaNotice {
+    padding-bottom: 20px;
+    font: 12px/20px 'Noto Sans';
+    color: #4c4c4c;
+}
+#qnaNotice .tit {
+    display: block;
+    padding: 4px 0 10px;
+    font-size: 12px;
+    line-height: 20px;
+    font-family: noto sans;
+    font-weight: 700;
+}
+#qnaNotice .list {
+    padding-top: 10px;
+}
+#qnaNotice dt {
+    font-family: noto sans;
+    font-weight: 700;
+}
+#qnaNotice .list span {
+    display: block;
+    position: relative;
+    padding-left: 9px;
+}
+#qnaNotice .list span:before {
+    content: "- ";
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#qnaNotice {
+    padding-bottom: 20px;
+    font: 12px/20px 'Noto Sans';
+    color: #4c4c4c;
+}
+
