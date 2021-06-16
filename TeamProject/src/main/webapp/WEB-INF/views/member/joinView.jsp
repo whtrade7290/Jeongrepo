@@ -226,8 +226,7 @@
 	</div>
 
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 	<script src="../js/jquery-3.5.1.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -503,13 +502,14 @@
                    gender: gender,
                    birthday: this.inputBirthday,
                    push: this.inputPushId,
-//                    jmembership: jmembership
+                   jmembership: this.jmembership
              };
              
              
              
              let str = JSON.stringify(obj); // 자바스크립트 객체를 JSON 문자열로 변환
              
+             alert("str = " + str);
              
              
              if(submitIdChk == 'n'){

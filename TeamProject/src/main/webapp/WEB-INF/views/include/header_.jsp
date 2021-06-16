@@ -150,7 +150,7 @@ String name = (String) session.getAttribute("name");
                            <li><a href="/goods/getDiscountPriceGoods?newGoods=D" class="link bargain "> <span
                                  class="txt">알뜰쇼핑</span>
                            </a></li>
-                           <li class="lst"><a href="#" class="link event "> <span
+                           <li class="lst"><a href="/member/check" class="link event "> <span
                                  class="txt">금주혜택</span>
                            </a></li>
                         </ul>

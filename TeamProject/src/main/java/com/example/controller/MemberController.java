@@ -352,5 +352,19 @@ public class MemberController {
 
 		return "/member/findPwResultView";
 	}
+	
+	@GetMapping("/check")
+	@ResponseBody
+	public String chk(HttpServletRequest request) {
+		log.info("check() 호출됨");
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		boolean a = session.isNew();
+		System.out.println("a == " + a);
+		log.info("check id = " + id);
+		
+		return id;
+	}
+
 
 }
